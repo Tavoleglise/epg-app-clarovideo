@@ -8,7 +8,12 @@ export default {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        right:
+          "4px 0 6px -1px rgba(0, 0, 0, 0.5), 2px 0 4px -2px rgba(0, 0, 0, 0.06)",
+      },
+    },
   },
   darkMode: "class",
   plugins: [nextui()],

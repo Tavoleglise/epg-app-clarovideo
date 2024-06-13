@@ -22,3 +22,18 @@ export const setToStorage = (
 
   return JSON.parse(stringifiedValue);
 };
+
+export const request = async (url: string) => {
+  const response = await fetch(url);
+  const data = await response.json();
+  // falta manejar el error
+  return data;
+};
+
+export const buildUrl = (baseUrl: string, params: Record<string, string>) => {
+  const url = new URL(baseUrl);
+  Object.keys(params).forEach((key) =>
+    url.searchParams.append(key, params[key])
+  );
+  return url.toString();
+};
