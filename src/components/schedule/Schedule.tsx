@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useChannelsStore from "../../stores/useChannelsStore";
+import useChannels from "../../hooks/useChannels.tsx";
 // import { getCurrentTime } from "../../utilities";
 import { getChannelsData } from "../../services";
 import { Spinner } from "@nextui-org/react";
@@ -12,27 +13,10 @@ import ChannelHead from "./channelHead/ChannelHead";
 
 const Schedule: React.FC = () => {
   // const actualTime = getCurrentTime();
-  const setChannels = useChannelsStore((state) => state.setChannels);
-  const channels = useChannelsStore((state) => state.channels);
   const hourWidth = 100;
-  useEffect(() => {
-    try {
-      getChannelsData(
-        "colombia",
-        "200",
-        "20200812200256",
-        "20200813200256"
-      ).then((data) => {
-        console.log(data);
-        setChannels(data);
-      });
-    } catch (error) {
-      console.error("Error: ", error);
-    }
-    // setChannels(requestDataAdapter(mock.response.channels));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  if (!channels || (channels && channels?.length === 0))
+  const { channels, loading } = useChannels();
+
+  if (!channels || (channels && channels?.length === 0) || loading)
     return (
       <div className="h-2/3 flex justify-center items-center">
         <Spinner color="primary" />
