@@ -2,77 +2,51 @@ import React, { useEffect } from "react";
 import useChannelsStore from "../../stores/useChannelsStore";
 // import { getCurrentTime } from "../../utilities";
 import { getChannelsData } from "../../services";
+import { Spinner } from "@nextui-org/react";
+import { mock } from "../../db/mock-info.ts";
+import { requestDataAdapter } from "../../utilities";
 
 //components
-import ChannelSchedule from "./channelSchedule/ChannelSchedule";
+import EventsTable from "./eventsTable/EventsTable";
+import ChannelHead from "./channelHead/ChannelHead";
 
 const Schedule: React.FC = () => {
   // const actualTime = getCurrentTime();
   const setChannels = useChannelsStore((state) => state.setChannels);
   const channels = useChannelsStore((state) => state.channels);
+  const hourWidth = 100;
   useEffect(() => {
     try {
-      getChannelsData("mexico", "5", "20200812200256", "20200813200256").then(
-        (data) => {
-          console.log(data);
-          setChannels(data);
-        }
-      );
+      getChannelsData(
+        "colombia",
+        "200",
+        "20200812200256",
+        "20200813200256"
+      ).then((data) => {
+        console.log(data);
+        setChannels(data);
+      });
     } catch (error) {
       console.error("Error: ", error);
     }
-
-    /* setChannels([
-      {
-        id: 35357,
-        number: 1,
-        name: "tavo-tv",
-        hd: true,
-        image:
-          "https://fastly.picsum.photos/id/294/290/163.jpg?hmac=Kdsziu-VHBvWBfpbAu-fhfiVUWIQAIgLjRXBN0_gTQo",
-        events: [
-          {
-            id: 1,
-            channelId: 35357,
-            name: "NA",
-            description: "",
-            dateBegin: "2021-08-12T20:02:56",
-            dateEnd: "2021-08-12T21:02:56",
-          },
-          {
-            id: 2,
-            channelId: 35357,
-            name: "NA",
-            description: "",
-            dateBegin: "2021-08-12T21:02:56",
-            dateEnd: "2021-08-12T22:02:56",
-          },
-          {
-            id: 3,
-            channelId: 35357,
-            name: "NA",
-            description: "",
-            dateBegin: "2021-08-12T22:02:56",
-            dateEnd: "2021-08-12T23:02:56",
-          },
-        ],
-      },
-    ]); */
+    // setChannels(requestDataAdapter(mock.response.channels));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  useEffect(() => {
-    console.log(channels);
-  }, [channels]);
   if (!channels || (channels && channels?.length === 0))
-    return <div>Loading...</div>;
+    return (
+      <div className="h-2/3 flex justify-center items-center">
+        <Spinner color="primary" />
+      </div>
+    );
   if (channels && channels.length > 0) {
     return (
-      <div className="h-2/3 bg-gradient-to-r from-gray-800 to-black">
-        <div>
+      <div className="h-2/3 flex bg-gradient-to-r from-gray-800 to-black overflow-x-auto overflow-y-auto">
+        <div className="sticky left-0 z-50">
           {channels.map((channel) => {
-            return <ChannelSchedule channel={channel} />;
+            return <ChannelHead channel={channel} />;
           })}
         </div>
+        <EventsTable channels={channels} />
       </div>
     );
   }

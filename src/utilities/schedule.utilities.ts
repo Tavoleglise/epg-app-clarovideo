@@ -16,3 +16,43 @@ export const formatFullDateIntoTime = (date: string): string => {
 
   return `${formattedHour}:${formattedMinutes}`;
 };
+
+export const calculateEventNormalizedTime = (
+  datebegin: string,
+  dateEnd: string
+): {
+  normalizedTotalHours: number;
+  dateBeginNormalized: number;
+  dateEndNormalized: number;
+} => {
+  const dateBeginObj = new Date(datebegin);
+  const dateEndObj = new Date(dateEnd);
+
+  const dateBeginHour = dateBeginObj.getHours();
+  const dateEndHour = dateEndObj.getHours();
+  const dateBeginMinutes = dateBeginObj.getMinutes();
+  const dateEndMinutes = dateEndObj.getMinutes();
+
+  const dateBeginNormalized = (dateBeginHour * 60 + dateBeginMinutes) / 60;
+  const dateEndNormalized = (dateEndHour * 60 + dateEndMinutes) / 60;
+
+  let normalizedTotalHours = dateEndNormalized - dateBeginNormalized;
+
+  const dateBeginWithoutTime = new Date(
+    dateBeginObj.getFullYear(),
+    dateBeginObj.getMonth(),
+    dateBeginObj.getDate()
+  );
+  const dateEndWithoutTime = new Date(
+    dateEndObj.getFullYear(),
+    dateEndObj.getMonth(),
+    dateEndObj.getDate()
+  );
+
+  const beginisDayBefore = dateBeginWithoutTime < dateEndWithoutTime;
+
+  if (beginisDayBefore) {
+    normalizedTotalHours += 24;
+  }
+  return { normalizedTotalHours, dateBeginNormalized, dateEndNormalized };
+};

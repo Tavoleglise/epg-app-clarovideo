@@ -26,8 +26,13 @@ export const getChannelsData = async (
     date_to: date_to,
     quantity: quantity,
   };
-  const data = await request(buildUrl(baseUrl, URLSearchParams));
-  console.log(data.response.channels[0].events);
-  const formatedData = requestDataAdapter(data.response.channels);
-  return formatedData;
+  try {
+    const data = await request(buildUrl(baseUrl, URLSearchParams));
+    console.log(data);
+    const formatedData = requestDataAdapter(data.response.channels);
+    return formatedData;
+  } catch (error) {
+    console.error("Error: ", error);
+    return [];
+  }
 };

@@ -7,7 +7,8 @@ export const getFromStorage = (
 ) => {
   const storage = type === "local" ? localStorage : sessionStorage;
   const item = storage.getItem(key);
-  return item ? JSON.parse(item) : otherwise;
+  console.log(item);
+  return item && item !== "undefined" ? JSON.parse(item) : otherwise;
 };
 
 export const setToStorage = (
@@ -19,14 +20,15 @@ export const setToStorage = (
   const storage = type === "local" ? localStorage : sessionStorage;
   const stringifiedValue = JSON.stringify(value);
   storage.setItem(key, stringifiedValue);
-
   return JSON.parse(stringifiedValue);
 };
 
 export const request = async (url: string) => {
   const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
   const data = await response.json();
-  // falta manejar el error
   return data;
 };
 
