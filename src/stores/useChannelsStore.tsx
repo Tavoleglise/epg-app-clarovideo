@@ -3,9 +3,7 @@ import { Channel, ChannelsState } from "../models/channels.models";
 import { getFromStorage, setToStorage } from "../utilities";
 
 const useChannelsStore = create<ChannelsState>((set) => ({
-  channels: getFromStorage("channels", "local", {
-    channels: [],
-  }),
+  channels: getFromStorage("channels", "local", []),
 
   setChannels: (channels: Channel[]) =>
     set(() => {

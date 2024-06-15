@@ -1,16 +1,26 @@
 import { useState, useEffect } from "react";
 import useChannelsStore from "../stores/useChannelsStore";
 import { getChannelsData } from "../services";
+import { requestDataAdapter } from "../utilities";
+import { mock } from "../db/mock-info.ts";
 
-const useChannels = () => {
+interface UseChannelsParams {
+  numberOfChannels: number;
+  endDate: string;
+  beginDate: string;
+  region: string;
+}
+
+const useChannels = ({
+  numberOfChannels,
+  endDate,
+  beginDate,
+  region,
+}: UseChannelsParams) => {
   const setChannels = useChannelsStore((state) => state.setChannels);
   const channels = useChannelsStore((state) => state.channels);
 
-  const [numberOfChannels, setNumberOfChannels] = useState(30);
-  const [loading, setLoading] = useState(true);
-  const [endDate, setEndDate] = useState("20200813200256");
-  const [beginDate, setBeginDate] = useState("20200812200256");
-  const [region, setRegion] = useState("colombia");
+  const [loading, setLoading] = useState(false);
 
   const getInicialData = async () => {
     setLoading(true);
@@ -20,17 +30,19 @@ const useChannels = () => {
       beginDate,
       endDate
     );
+    console.log(channelData);
     setChannels(channelData);
     setLoading(false);
   };
 
   useEffect(() => {
+    // console.log(mock.response.channels);
     // setChannels(requestDataAdapter(mock.response.channels));
     // eslint-disable-next-line react-hooks/exhaustive-deps
     getInicialData();
   }, []);
 
-  useEffect(() => {
+  /*useEffect(() => {
     getChannelsData(
       "colombia",
       `${numberOfChannels}`,
@@ -40,9 +52,9 @@ const useChannels = () => {
       console.log(data);
       setChannels(data);
     });
-  }, [numberOfChannels]);
+  }, [numberOfChannels]); */
 
-  return { channels, loading, setNumberOfChannels };
+  return { channels, loading };
 };
 
 export default useChannels;

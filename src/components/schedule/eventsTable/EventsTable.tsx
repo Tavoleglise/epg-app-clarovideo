@@ -3,6 +3,7 @@ import { Channel } from "../../../models";
 
 // components
 import ChannelSchedule from "../channelSchedule/ChannelSchedule";
+// import TimeEventIndicators from "../timeEventIndicators/TimeEventIndicators";
 
 interface EventsTableProps {
   channels: Channel[];
@@ -11,9 +12,11 @@ interface EventsTableProps {
 const EventsTable: React.FC<EventsTableProps> = ({ channels }) => {
   return (
     <div>
-      {channels.map((channel: Channel) => {
-        return <ChannelSchedule channel={channel} />;
-      })}
+      <div>
+        {channels.map((channel: Channel) => {
+          return <ChannelSchedule channel={channel} />;
+        })}
+      </div>
     </div>
   );
 };
