@@ -39,3 +39,15 @@ export const buildUrl = (baseUrl: string, params: Record<string, string>) => {
   );
   return url.toString();
 };
+
+export const parseDateString = (dateString: string) => {
+  const dateParts = dateString.split(/[/ :]/);
+  return {
+    year: parseInt(dateParts[0], 10),
+    month: parseInt(dateParts[1], 10),
+    day: parseInt(dateParts[2], 10),
+    hour: parseInt(dateParts[3], 10),
+    minute: parseInt(dateParts[4], 10),
+    second: parseInt(dateParts[5], 10),
+  };
+};

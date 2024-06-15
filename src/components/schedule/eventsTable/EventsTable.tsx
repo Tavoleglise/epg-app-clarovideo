@@ -1,5 +1,5 @@
 import React from "react";
-import { Channel } from "../../../models";
+import { Channel, Event } from "../../../models";
 
 // components
 import ChannelSchedule from "../channelSchedule/ChannelSchedule";
@@ -7,14 +7,23 @@ import ChannelSchedule from "../channelSchedule/ChannelSchedule";
 
 interface EventsTableProps {
   channels: Channel[];
+  handleEventSelection: (event: Event) => void;
 }
 
-const EventsTable: React.FC<EventsTableProps> = ({ channels }) => {
+const EventsTable: React.FC<EventsTableProps> = ({
+  channels,
+  handleEventSelection,
+}) => {
   return (
     <div>
       <div>
         {channels.map((channel: Channel) => {
-          return <ChannelSchedule channel={channel} />;
+          return (
+            <ChannelSchedule
+              channel={channel}
+              handleEventSelection={handleEventSelection}
+            />
+          );
         })}
       </div>
     </div>

@@ -7,15 +7,24 @@ import FormatedTimePeriod from "../../commons/formatedTimePeriod/FormatedTimePer
 
 interface EventCardProps {
   event: Event;
+  handleEventSelection: (event: Event) => void;
 }
 
-const EventCard: React.FC<EventCardProps> = ({ event }) => {
+const EventCard: React.FC<EventCardProps> = ({
+  event,
+  handleEventSelection,
+}) => {
   const normalizedTime = calculateEventNormalizedTime(
     event.dateBegin,
     event.dateEnd
   );
+
+  const handleMouseEnter = () => {
+    handleEventSelection(event);
+  };
+
   return (
-    <div>
+    <div onMouseEnter={handleMouseEnter}>
       <div
         style={{
           width: `${16 * normalizedTime.normalizedTotalHours}rem`,
