@@ -51,3 +51,9 @@ export const parseDateString = (dateString: string) => {
     second: parseInt(dateParts[5], 10),
   };
 };
+
+export const generateUniqueNumber = (): number => {
+  const time = new Date().getTime(); // Tiempo actual en milisegundos
+  const random = Math.floor(Math.random() * 1000); // Número aleatorio entre 0 y 999
+  return time + random; // Combinar ambos para obtener un número único
+};

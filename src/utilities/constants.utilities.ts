@@ -12,3 +12,9 @@ export const monthsNames = [
   "November",
   "December",
 ];
+
+export const countries = [
+  { key: "co", label: "Colombia" },
+  { key: "mx", label: "México" },
+  { key: "ar", label: "Argentina" },
+];
