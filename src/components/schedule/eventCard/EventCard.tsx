@@ -1,6 +1,7 @@
 import React from "react";
 import { Event } from "../../../models";
 import { calculateEventNormalizedTime } from "../../../utilities";
+import { getFromStorage } from "../../../utilities";
 
 // components
 import FormatedTimePeriod from "../../commons/formatedTimePeriod/FormatedTimePeriod";
@@ -14,9 +15,11 @@ const EventCard: React.FC<EventCardProps> = ({
   event,
   handleEventSelection,
 }) => {
+  const configuration = getFromStorage("searchConfiguration", "local", {});
   const normalizedTime = calculateEventNormalizedTime(
     event.dateBegin,
-    event.dateEnd
+    event.dateEnd,
+    configuration.beginDate
   );
 
   const handleMouseEnter = () => {
@@ -38,6 +41,8 @@ const EventCard: React.FC<EventCardProps> = ({
             dateBegin={event.dateBegin}
             dateEnd={event.dateEnd}
           />
+          <div>{`${normalizedTime.dateBeginNormalized} - ${normalizedTime.dateEndNormalized}`}</div>
+          <div>{`begindaybefore - ${normalizedTime.beginisDayBefore} || enddayafter - ${normalizedTime.endIsDayAfter}`}</div>
         </div>
       </div>
     </div>

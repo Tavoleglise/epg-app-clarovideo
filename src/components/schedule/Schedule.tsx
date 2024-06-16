@@ -54,7 +54,7 @@ const Schedule: React.FC<ScheduleProps> = ({
     };
   });
 
-  if (!channels || (channels && channels?.length === 0) || loading)
+  if (!channels || (channels && channels?.length <= 0) || loading)
     return (
       <div className="h-full flex justify-center items-center">
         <Spinner color="primary" />

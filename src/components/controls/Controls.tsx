@@ -3,6 +3,7 @@ import { Select, SelectItem, DatePicker } from "@nextui-org/react";
 import { countries } from "../../utilities";
 import { searchConfiguration } from "../../models";
 import { dateToParamDateAdapter } from "../../utilities";
+import "./controls.sass";
 
 interface ControlsProps {
   setSearchConfiguration: (searchConfiguration: searchConfiguration) => void;
@@ -41,7 +42,7 @@ const Controls: React.FC<ControlsProps> = ({
           <DatePicker
             label="Birth date"
             className="max-w-[284px]"
-            variant="underlined"
+            variant="bordered"
             onChange={(dateValue) => {
               handleDateChange(dateValue);
             }}
@@ -51,7 +52,7 @@ const Controls: React.FC<ControlsProps> = ({
           label="Select your region"
           size="sm"
           className="max-w-xs"
-          variant="underlined"
+          variant="bordered"
           onChange={(e) => handleRegionChange(e)}
         >
           {countries.map((country) => (

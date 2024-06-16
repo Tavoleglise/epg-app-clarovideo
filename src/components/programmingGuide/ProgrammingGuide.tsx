@@ -14,7 +14,6 @@ const ProgrammingGuide: React.FC = () => {
   });
 
   useEffect(() => {
-    console.log(searchConfiguration);
     setToStorage("searchConfiguration", searchConfiguration, "local");
   }, [searchConfiguration]);
 
