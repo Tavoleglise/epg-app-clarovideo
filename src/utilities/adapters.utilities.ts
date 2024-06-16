@@ -62,39 +62,14 @@ export const adaptEvent = (rawEvent: Record<string, unknown>): Event => {
   };
 };
 
-/* [
-    {
-      id: 35357,
-      number: 1,
-      name: "tavo-tv",
-      hd: true,
-      image:
-        "https://fastly.picsum.photos/id/294/290/163.jpg?hmac=Kdsziu-VHBvWBfpbAu-fhfiVUWIQAIgLjRXBN0_gTQo",
-      events: [
-        {
-          id: 1,
-          channelId: 35357,
-          name: "NA",
-          description: "",
-          dateBegin: "2021-08-12T20:02:56",
-          dateEnd: "2021-08-12T21:02:56",
-        },
-        {
-          id: 2,
-          channelId: 35357,
-          name: "NA",
-          description: "",
-          dateBegin: "2021-08-12T21:02:56",
-          dateEnd: "2021-08-12T22:02:56",
-        },
-        {
-          id: 3,
-          channelId: 35357,
-          name: "NA",
-          description: "",
-          dateBegin: "2021-08-12T22:02:56",
-          dateEnd: "2021-08-12T23:02:56",
-        },
-      ],
-    },
-  ] */
+export const dateToParamDateAdapter = (
+  day: number,
+  month: number,
+  year: number,
+  isBegin: boolean
+): string => {
+  const parsedDate = `${year}${month < 10 ? `0${month}` : month}${
+    day < 10 ? `0${day}` : day
+  }${isBegin ? "000000" : "235959"}`;
+  return parsedDate;
+};

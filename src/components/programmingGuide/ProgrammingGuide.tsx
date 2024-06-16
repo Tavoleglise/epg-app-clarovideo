@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Schedule from "../schedule/Schedule";
 import EventInformation from "../eventInformation/EventInformation";
 import Controls from "../controls/Controls";
 import { Event } from "../../models";
+import { setToStorage } from "../../utilities";
 
 const ProgrammingGuide: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-  const [endDate] = useState("20200813240000");
-  const [beginDate] = useState("20200813000000");
-  const [region] = useState("colombia");
-  const [searchConfiguration] = useState({});
+  const [searchConfiguration, setSearchConfiguration] = useState({
+    endDate: "20200813240000",
+    beginDate: "20200813000000",
+    region: "colombia",
+  });
+
+  useEffect(() => {
+    console.log(searchConfiguration);
+    setToStorage("searchConfiguration", searchConfiguration, "local");
+  }, [searchConfiguration]);
 
   const handleEventSelection = (event: Event) => {
     setSelectedEvent(event);
@@ -21,15 +28,16 @@ const ProgrammingGuide: React.FC = () => {
           <EventInformation event={selectedEvent} />
         </div>
         <div className="h-1/6">
-          <Controls />
+          <Controls
+            setSearchConfiguration={setSearchConfiguration}
+            searchConfiguration={searchConfiguration}
+          />
         </div>
       </div>
       <div className="h-2/3">
         <Schedule
           handleEventSelection={handleEventSelection}
-          beginDate={beginDate}
-          endDate={endDate}
-          region={region}
+          searchConfiguration={searchConfiguration}
         />
       </div>
     </div>

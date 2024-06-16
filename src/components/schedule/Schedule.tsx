@@ -7,28 +7,23 @@ import { Event } from "../../models";
 //components
 import EventsTable from "./eventsTable/EventsTable";
 import ChannelInformationTable from "./channelInformationTable/ChannelInformationTable.tsx";
+import { searchConfiguration } from "../../models";
 
 interface ScheduleProps {
   handleEventSelection: (event: Event) => void;
-  beginDate: string;
-  endDate: string;
-  region: string;
+  searchConfiguration: searchConfiguration;
 }
 
 const Schedule: React.FC<ScheduleProps> = ({
   handleEventSelection,
-  beginDate,
-  endDate,
-  region,
+  searchConfiguration,
 }) => {
   // const actualTime = getCurrentTime();
   // const hourWidth = 100;
   const [numberOfChannels, setNumberOfChannels] = useState(20);
   const { channels, loading } = useChannels({
     numberOfChannels,
-    endDate,
-    beginDate,
-    region,
+    searchConfiguration,
   });
   const channelsScheduleRef = useRef<HTMLDivElement>(null);
 

@@ -14,7 +14,7 @@ export const monthsNames = [
 ];
 
 export const countries = [
-  { key: "co", label: "Colombia" },
-  { key: "mx", label: "México" },
-  { key: "ar", label: "Argentina" },
+  { key: "colombia", label: "Colombia" },
+  { key: "mexico", label: "México" },
+  { key: "argentina", label: "Argentina" },
 ];
