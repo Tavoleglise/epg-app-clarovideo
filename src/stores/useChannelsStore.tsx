@@ -1,5 +1,5 @@
 import create from "zustand";
-import { Channel, ChannelsState } from "../models/channels.models";
+import { Channel, ChannelsState } from "../models";
 import { getFromStorage, setToStorage } from "../utilities";
 
 const useChannelsStore = create<ChannelsState>((set) => ({

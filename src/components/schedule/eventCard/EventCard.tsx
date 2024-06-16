@@ -42,7 +42,7 @@ const EventCard: React.FC<EventCardProps> = ({
             dateEnd={event.dateEnd}
           />
           <div>{`${normalizedTime.dateBeginNormalized} - ${normalizedTime.dateEndNormalized}`}</div>
-          <div>{`begindaybefore - ${normalizedTime.beginisDayBefore} || enddayafter - ${normalizedTime.endIsDayAfter}`}</div>
+          {/* <div>{`begindaybefore - ${normalizedTime.beginisDayBefore} || enddayafter - ${normalizedTime.endIsDayAfter}`}</div> */}
         </div>
       </div>
     </div>

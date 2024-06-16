@@ -101,7 +101,16 @@ export const formatQueryDateIntoDateFormat = (dateString: string): string => {
   const minute = dateString.substring(10, 12);
   const second = dateString.substring(12, 14);
 
-  // Paso 2: Formatear a ISO 8601 (YYYY-MM-DDTHH:mm:ss)
   const formattedDate = `${year}-${month}-${day}T${hour}:${minute}:${second}`;
   return formattedDate;
+};
+
+export const calculateTodayDateBarLeftPosition = (): string => {
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  const totalMinutes = hours * 60 + minutes;
+  const fractionOfDay = totalMinutes / (24 * 60);
+  const position = fractionOfDay * 100;
+  return `${position}%`;
 };

@@ -7,11 +7,11 @@ import { Event } from "../../models";
 //components
 import EventsTable from "./eventsTable/EventsTable";
 import ChannelInformationTable from "./channelInformationTable/ChannelInformationTable.tsx";
-import { searchConfiguration } from "../../models";
+import { SearchConfiguration } from "../../models";
 
 interface ScheduleProps {
   handleEventSelection: (event: Event) => void;
-  searchConfiguration: searchConfiguration;
+  searchConfiguration: SearchConfiguration;
 }
 
 const Schedule: React.FC<ScheduleProps> = ({

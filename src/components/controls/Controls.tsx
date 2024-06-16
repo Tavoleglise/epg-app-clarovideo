@@ -1,13 +1,13 @@
 import React from "react";
 import { Select, SelectItem, DatePicker } from "@nextui-org/react";
 import { countries } from "../../utilities";
-import { searchConfiguration } from "../../models";
+import { SearchConfiguration } from "../../models";
 import { dateToParamDateAdapter } from "../../utilities";
 import "./controls.sass";
 
 interface ControlsProps {
-  setSearchConfiguration: (searchConfiguration: searchConfiguration) => void;
-  searchConfiguration: searchConfiguration;
+  setSearchConfiguration: (searchConfiguration: SearchConfiguration) => void;
+  searchConfiguration: SearchConfiguration;
 }
 
 const Controls: React.FC<ControlsProps> = ({
