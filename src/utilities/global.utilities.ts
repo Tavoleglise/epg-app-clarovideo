@@ -7,7 +7,6 @@ export const getFromStorage = (
 ) => {
   const storage = type === "local" ? localStorage : sessionStorage;
   const item = storage.getItem(key);
-  console.log(item);
   return item && item !== "undefined" ? JSON.parse(item) : otherwise;
 };
 

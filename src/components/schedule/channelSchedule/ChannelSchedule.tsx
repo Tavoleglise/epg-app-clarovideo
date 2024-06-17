@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Channel, Event } from "../../../models";
 
 //components
@@ -12,9 +12,6 @@ const ChannelSchedule: React.FC<ChannelScheduleProps> = ({
   channel,
   handleEventSelection,
 }) => {
-  useEffect(() => {
-    console.log(channel);
-  }, []);
   return (
     <div className="flex">
       {channel.events?.map((event) => (

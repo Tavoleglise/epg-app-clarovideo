@@ -3,3 +3,8 @@ export interface SearchConfiguration {
   beginDate: string;
   region: string;
 }
+
+export interface SearchConfigurationState {
+  searchConfiguration: SearchConfiguration;
+  setSearchConfiguration: (searchConfiguration: SearchConfiguration) => void;
+}

@@ -92,7 +92,7 @@ export const calculateEventNormalizedTime = (
     endIsDayAfter,
   };
 };
-
+//'2024/06/20 04:00:00'
 export const formatQueryDateIntoDateFormat = (dateString: string): string => {
   const year = dateString.substring(0, 4);
   const month = dateString.substring(4, 6);
@@ -101,7 +101,7 @@ export const formatQueryDateIntoDateFormat = (dateString: string): string => {
   const minute = dateString.substring(10, 12);
   const second = dateString.substring(12, 14);
 
-  const formattedDate = `${year}-${month}-${day}T${hour}:${minute}:${second}`;
+  const formattedDate = `${year}/${month}/${day} ${hour}:${minute}:${second}`;
   return formattedDate;
 };
 
@@ -113,4 +113,22 @@ export const calculateTodayDateBarLeftPosition = (): string => {
   const fractionOfDay = totalMinutes / (24 * 60);
   const position = fractionOfDay * 100;
   return `${position}%`;
+};
+
+export const getDataFromDateObject = (
+  date: Date
+): {
+  year: number;
+  month: number;
+  day: number;
+  hours: number;
+  minutes: number;
+} => {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+
+  return { year, month, day, hours, minutes };
 };

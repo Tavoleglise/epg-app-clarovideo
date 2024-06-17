@@ -28,7 +28,6 @@ export const getChannelsData = async (
   };
   try {
     const data = await request(buildUrl(baseUrl, URLSearchParams));
-    console.log(data);
     const formatedData = requestDataAdapter(data.response.channels);
     return formatedData;
   } catch (error) {

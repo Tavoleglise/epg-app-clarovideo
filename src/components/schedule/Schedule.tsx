@@ -3,27 +3,25 @@ import useChannels from "../../hooks/useChannels.tsx";
 // import { getCurrentTime } from "../../utilities";
 import { Spinner } from "@nextui-org/react";
 import { Event } from "../../models";
+import useSearchConfigurationStore from "../../stores/useSearchConfigurationStore.tsx";
 
 //components
 import EventsTable from "./eventsTable/EventsTable";
 import ChannelInformationTable from "./channelInformationTable/ChannelInformationTable.tsx";
-import { SearchConfiguration } from "../../models";
 
 interface ScheduleProps {
   handleEventSelection: (event: Event) => void;
-  searchConfiguration: SearchConfiguration;
 }
 
-const Schedule: React.FC<ScheduleProps> = ({
-  handleEventSelection,
-  searchConfiguration,
-}) => {
+const Schedule: React.FC<ScheduleProps> = ({ handleEventSelection }) => {
   // const actualTime = getCurrentTime();
   // const hourWidth = 100;
   const [numberOfChannels, setNumberOfChannels] = useState(20);
+  const searchConfiguration = useSearchConfigurationStore(
+    (state) => state.searchConfiguration
+  );
   const { channels, loading } = useChannels({
     numberOfChannels,
-    searchConfiguration,
   });
   const channelsScheduleRef = useRef<HTMLDivElement>(null);
 
@@ -53,6 +51,10 @@ const Schedule: React.FC<ScheduleProps> = ({
       }
     };
   });
+
+  useEffect(() => {
+    setNumberOfChannels(20);
+  }, [searchConfiguration]);
 
   if (!channels || (channels && channels?.length <= 0) || loading)
     return (

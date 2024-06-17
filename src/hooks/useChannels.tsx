@@ -2,21 +2,20 @@ import { useState, useEffect, useRef } from "react";
 import useChannelsStore from "../stores/useChannelsStore";
 import { getChannelsData } from "../services";
 import { getFromStorage } from "../utilities";
-import { requestDataAdapter } from "../utilities";
-import { mock } from "../db/mock-info.ts";
-import { SearchConfiguration } from "../models";
+// import { requestDataAdapter } from "../utilities";
+// import { mock } from "../db/mock-info.ts";
+import useSearchConfigurationStore from "../stores/useSearchConfigurationStore.tsx";
 
 interface UseChannelsParams {
   numberOfChannels: number;
-  searchConfiguration: SearchConfiguration;
 }
 
-const useChannels = ({
-  numberOfChannels,
-  searchConfiguration,
-}: UseChannelsParams) => {
+const useChannels = ({ numberOfChannels }: UseChannelsParams) => {
   const setChannels = useChannelsStore((state) => state.setChannels);
   const channels = useChannelsStore((state) => state.channels);
+  const searchConfiguration = useSearchConfigurationStore(
+    (state) => state.searchConfiguration
+  );
   const [loading, setLoading] = useState(false);
 
   const isFirstRender = useRef(true);
@@ -52,7 +51,6 @@ const useChannels = ({
       beginDate,
       endDate
     );
-    console.log(channelData);
     setChannels(channelData);
     setLoading(false);
   };
@@ -63,13 +61,13 @@ const useChannels = ({
     }
   });
   useEffect(() => {
-    //getInicialData();
+    getInicialData();
     // console.log(mock.response.channels);
-    setChannels(requestDataAdapter(mock.response.channels));
+    //setChannels(requestDataAdapter(mock.response.channels));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /*useEffect(() => {
+  useEffect(() => {
     const numberOfChannelsChanged =
       numberOfChannelsRef.current !== numberOfChannels;
     if (!isFirstRender.current && numberOfChannelsChanged) {
@@ -82,11 +80,11 @@ const useChannels = ({
 
   useEffect(() => {
     if (isFirstSeatchConfigurationRender.current) {
-      isFirstSeatchConfigurationRender.current = false; // Marca el primer renderizado como completado
+      isFirstSeatchConfigurationRender.current = false;
     } else {
-      getChannels(); // Esto se ejecutará solo en cambios subsiguientes, no en el primer renderizado
+      getChannels();
     }
-  }, [searchConfiguration]);*/
+  }, [searchConfiguration]);
 
   return { channels, loading };
 };
