@@ -1,30 +1,51 @@
-# React + TypeScript + Vite
+# ClaroVideo EPG App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esta aplicación es parte de una prueba técnica para ClaroVideo. Permite a los usuarios ver la programación de una lista de canales de televisión.
 
-Currently, two official plugins are available:
+## Live Demo
+[EPG App](https://epg-app-clarovideo.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tabla de Contenidos
+- [Instalación](#instalación)
+- [Uso](#uso)
+- [Pruebas](#pruebas)
+- [Características](#características)
+- [Tecnologías Utilizadas](#tecnologías-utilizadas)
 
-## Expanding the ESLint configuration
+## Instalación
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Para instalar y ejecutar la aplicación localmente, sigue estos pasos:
 
-- Configure the top-level `parserOptions` property like this:
+1. **Clonar el repositorio:**
+   ```sh
+   git clone https://github.com/Tavoleglise/epg-app-clarovideo.git
+   cd epg-app-clarovideo
+2. **Instalar dependencias**
+   ```sh
+   npm install
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Uso
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Para instalar y ejecutar la aplicación localmente, sigue estos pasos:
+
+1. **Clonar el repositorio:**
+   ```sh
+   npm run dev
+2. **Instalar dependencias**
+   ```sh
+   npm run test
+
+## Características
+
+- Lazy loading al obtener la lista de canales
+- Configuracion persistente a través del localStorage
+- Configuracion de busqueda utilizando fecha y region
+- Línea vertical que indica la hora actual
+
+## Tecnologías Utilizada
+
+- Vite
+- React
+- Tailwind
+- @testing-library/react: Utilizado para pruebas de componentes de React.
+- Vitest: Framework de pruebas unitarias.
