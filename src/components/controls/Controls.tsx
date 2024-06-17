@@ -16,16 +16,38 @@ const Controls: React.FC = () => {
   const setSearchConfiguration = useSearchConfigurationStore(
     (state) => state.setSearchConfiguration
   );
+  const today = new Date();
 
   useEffect(() => {
-    setSearchConfiguration(
-      getFromStorage("searchConfiguration", "local", {
-        beginDate: "20200813000000",
-        endDate: "20200813240000",
-        region: "colombia",
-      })
-    );
+    setStorageConfiguration();
   }, []);
+
+  const setStorageConfiguration = () => {
+    const configurationFRomStorage = getFromStorage(
+      "searchConfiguration",
+      "local",
+      false
+    );
+    if (configurationFRomStorage) {
+      setSearchConfiguration(configurationFRomStorage);
+    } else {
+      setSearchConfiguration({
+        beginDate: dateToParamDateAdapter(
+          today.getDate(),
+          today.getMonth() + 1,
+          today.getFullYear(),
+          true
+        ),
+        endDate: dateToParamDateAdapter(
+          today.getDate(),
+          today.getMonth() + 1,
+          today.getFullYear(),
+          false
+        ),
+        region: "mexico",
+      });
+    }
+  };
 
   const handleRegionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSearchConfiguration({ ...searchConfiguration, region: e.target.value });
@@ -50,7 +72,6 @@ const Controls: React.FC = () => {
   };
 
   const handleReturnToToday = () => {
-    const today = new Date();
     setSearchConfiguration({
       ...searchConfiguration,
       beginDate: dateToParamDateAdapter(

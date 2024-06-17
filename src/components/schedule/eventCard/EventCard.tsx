@@ -1,7 +1,6 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { Event } from "../../../models";
 import { calculateEventNormalizedTime } from "../../../utilities";
-import { getFromStorage } from "../../../utilities";
 import useSearchConfigurationStore from "../../../stores/useSearchConfigurationStore";
 
 // components
@@ -20,17 +19,13 @@ const EventCard: React.FC<EventCardProps> = ({
     (state) => state.searchConfiguration
   );
   const { normalizedTime } = useMemo(() => {
-    const configuration = getFromStorage("searchConfiguration", "local", {});
+    const configuration = configurationFromStore;
     const normalizedTime = calculateEventNormalizedTime(
       event.dateBegin,
       event.dateEnd,
       configuration.beginDate
     );
     return { configuration, normalizedTime };
-  }, [configurationFromStore]);
-
-  useEffect(() => {
-    "Configuracion desde evento";
   }, [configurationFromStore]);
 
   const handleMouseEnter = () => {

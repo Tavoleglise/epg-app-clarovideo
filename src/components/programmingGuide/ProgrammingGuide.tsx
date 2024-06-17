@@ -27,7 +27,7 @@ const ProgrammingGuide: React.FC = () => {
         <div className="h-4/6 sm:h-4/6 overflow-y-auto">
           <EventInformation event={selectedEvent} />
         </div>
-        <div className="h-2/6 sm:h-2/6 py-2">
+        <div className="h-2/6 sm:h-2/6 py-2 overflow-y-auto">
           <Controls />
         </div>
       </div>

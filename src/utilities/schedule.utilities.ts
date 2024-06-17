@@ -132,3 +132,14 @@ export const getDataFromDateObject = (
 
   return { year, month, day, hours, minutes };
 };
+
+export const formatDateObjIntoDateForRequest = (
+  date: Date,
+  isEnd: boolean
+): string => {
+  const { year, month, day } = getDataFromDateObject(date);
+  const formattedDate = `${year}${month + 1 < 10 ? `0${month + 1}` : month}${
+    day < 10 ? `0${day}` : day
+  }${isEnd ? "235959" : "000000"}`;
+  return formattedDate;
+};

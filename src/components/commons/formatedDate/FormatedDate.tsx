@@ -28,7 +28,7 @@ const FormatedDate: React.FC<FormatedDateProps> = ({ date, style }) => {
   }
   return (
     <span className={style}>
-      {monthName.slice(0, 3)} {day} {year}
+      {monthName?.slice(0, 3)} {day} {year}
     </span>
   );
 };
