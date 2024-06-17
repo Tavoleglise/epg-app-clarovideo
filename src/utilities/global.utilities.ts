@@ -15,7 +15,6 @@ export const setToStorage = (
   value: unknown,
   type: StorageType = "local"
 ) => {
-  console.log(value);
   const storage = type === "local" ? localStorage : sessionStorage;
   const stringifiedValue = JSON.stringify(value);
   storage.setItem(key, stringifiedValue);

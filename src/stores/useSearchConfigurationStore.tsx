@@ -27,7 +27,6 @@ const useSearchConfigurationStore = create<SearchConfigurationState>((set) => ({
 
   setSearchConfiguration: (searchConfiguration: SearchConfiguration) =>
     set(() => {
-      console.log(searchConfiguration);
       return {
         searchConfiguration: setToStorage(
           "searchConfiguration",

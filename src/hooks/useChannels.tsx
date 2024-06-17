@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import useChannelsStore from "../stores/useChannelsStore";
 import { getChannelsData } from "../services";
 import { getFromStorage } from "../utilities";
-// import { requestDataAdapter } from "../utilities";
-// import { mock } from "../db/mock-info.ts";
 import useSearchConfigurationStore from "../stores/useSearchConfigurationStore.tsx";
 
 interface UseChannelsParams {
@@ -29,7 +27,6 @@ const useChannels = ({ numberOfChannels }: UseChannelsParams) => {
     if (localChannels.length > 0) {
       setChannels(localChannels);
     } else {
-      console.log("OBTIENE DE API");
       setLoading(true);
       const channelData = await getChannelsData(
         region,
@@ -37,7 +34,6 @@ const useChannels = ({ numberOfChannels }: UseChannelsParams) => {
         beginDate,
         endDate
       );
-      console.log(channelData);
       setChannels(channelData);
       setLoading(false);
     }
@@ -62,16 +58,12 @@ const useChannels = ({ numberOfChannels }: UseChannelsParams) => {
   });
   useEffect(() => {
     getInicialData();
-    // console.log(mock.response.channels);
-    //setChannels(requestDataAdapter(mock.response.channels));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     const numberOfChannelsChanged =
       numberOfChannelsRef.current !== numberOfChannels;
     if (!isFirstRender.current && numberOfChannelsChanged) {
-      console.log("Cambio en el numero de canales");
       getChannels();
     }
     numberOfChannelsRef.current = numberOfChannels;

@@ -12,9 +12,7 @@ const FormatedTimeAndDate: React.FC<FormatedTimeAndDateProps> = ({
   style,
 }) => {
   if (!date) return <div className={style}>Date not available</div>;
-  console.log(date);
   const parsedDate = parseDateString(date);
-  console.log(parsedDate);
   const { month, day, hour, minute } = parsedDate;
   const monthName = monthsNames[month - 1];
   return (

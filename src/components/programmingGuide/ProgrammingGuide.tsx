@@ -15,7 +15,6 @@ const ProgrammingGuide: React.FC = () => {
 
   useEffect(() => {
     const updatingCurrentDateInterval = setInterval(() => {
-      console.log("updating current date");
       setCurrentDate(new Date());
     }, 600000);
     return () => clearInterval(updatingCurrentDateInterval);

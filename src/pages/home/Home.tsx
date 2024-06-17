@@ -9,7 +9,9 @@ const Home: React.FC = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <div className="bg-gradient-to-r from-white to-gray-400 h-screen flex justify-center items-center">
-      <Button onPress={onOpen}>Open Modal</Button>
+      <Button color="primary" onPress={onOpen}>
+        Open EPG
+      </Button>
       <MainModal isOpen={isOpen} onOpenChange={onOpenChange} />
     </div>
   );

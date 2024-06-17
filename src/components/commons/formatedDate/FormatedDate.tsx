@@ -17,8 +17,6 @@ const FormatedDate: React.FC<FormatedDateProps> = ({ date, style }) => {
   const { month, day, year } = parsedDate;
   const monthName = monthsNames[month - 1];
 
-  console.log(currentDateData, parsedDate);
-
   if (
     currentDateData.month + 1 === month &&
     currentDateData.day === day &&
