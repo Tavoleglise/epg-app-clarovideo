@@ -1,6 +1,8 @@
 import { request, buildUrl, requestDataAdapter } from "../utilities";
 
 const baseUrl = "https://mfwkweb-api.clarovideo.net/services/epg/channel";
+const authpt = import.meta.env.VITE_API_AUTHPT;
+const userId = import.meta.env.VITE_VITE_API_USERID;
 
 export const getChannelsData = async (
   region: string,
@@ -17,11 +19,11 @@ export const getChannelsData = async (
     format: "json",
     device_manufacturer: "generic",
     authpn: "webclient",
-    authpt: "tfg1h3j4k6fd7",
+    authpt: authpt,
     api_version: "v5.93",
     region: region,
     HKS: "web61144bb49d549",
-    user_id: "54343080",
+    user_id: userId,
     date_from: date_from,
     date_to: date_to,
     quantity: quantity,

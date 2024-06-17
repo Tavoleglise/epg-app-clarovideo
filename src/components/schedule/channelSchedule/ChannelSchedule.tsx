@@ -15,7 +15,12 @@ const ChannelSchedule: React.FC<ChannelScheduleProps> = ({
   return (
     <div className="flex">
       {channel.events?.map((event) => (
-        <EventCard event={event} handleEventSelection={handleEventSelection} />
+        <div key={event.id}>
+          <EventCard
+            event={event}
+            handleEventSelection={handleEventSelection}
+          />
+        </div>
       ))}
     </div>
   );

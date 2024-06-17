@@ -16,7 +16,7 @@ describe("<App />", () => {
     const user = userEvent.setup();
     render(<App />);
     screen.debug();
-    const button = screen.getByRole("button", { name: "Open Modal" });
+    const button = screen.getByRole("button", { name: "Open EPG" });
     expect(button).toBeDefined();
 
     await user.click(button);

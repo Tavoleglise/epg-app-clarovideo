@@ -1,6 +1,6 @@
 # ClaroVideo EPG App
 
-Esta aplicación es parte de una prueba técnica para ClaroVideo. Permite a los usuarios ver la programación de una lista de canales de televisión.
+Esta aplicación es parte de una prueba técnica para Global Hitts y ClaroVideo. Permite a los usuarios ver la programación de una lista de canales de televisión y configurar la búsqueda a su gusto.
 
 ## Live Demo
 [EPG App](https://epg-app-clarovideo.vercel.app/)
@@ -8,9 +8,9 @@ Esta aplicación es parte de una prueba técnica para ClaroVideo. Permite a los 
 ## Tabla de Contenidos
 - [Instalación](#instalación)
 - [Uso](#uso)
-- [Pruebas](#pruebas)
 - [Características](#características)
 - [Tecnologías Utilizadas](#tecnologías-utilizadas)
+- [Consideraciones](#Consideraciones)
 
 ## Instalación
 
@@ -28,18 +28,18 @@ Para instalar y ejecutar la aplicación localmente, sigue estos pasos:
 
 Para instalar y ejecutar la aplicación localmente, sigue estos pasos:
 
-1. **Clonar el repositorio:**
+1. **Correr ambiente de desarrollo:**
    ```sh
    npm run dev
-2. **Instalar dependencias**
+2. **Correr pruebas**
    ```sh
    npm run test
 
 ## Características
 
 - Lazy loading al obtener la lista de canales
-- Configuracion persistente a través del localStorage
-- Configuracion de busqueda utilizando fecha y region
+- Configuración persistente a través del localStorage
+- Configuración de búsqueda utilizando fecha y regiún
 - Línea vertical que indica la hora actual
 
 ## Tecnologías Utilizada
@@ -49,3 +49,7 @@ Para instalar y ejecutar la aplicación localmente, sigue estos pasos:
 - Tailwind
 - @testing-library/react: Utilizado para pruebas de componentes de React.
 - Vitest: Framework de pruebas unitarias.
+
+## Consideraciones
+
+Por cuestión de UX y performance se cambió el hover de los eventos por un click

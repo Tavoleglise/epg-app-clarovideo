@@ -21,7 +21,6 @@ export const requestDataAdapter = (data: unknown[]): Channel[] => {
       throw new Error("Invalid channel data");
     }
 
-    // Asumiendo que tienes una validación o adaptación para los eventos
     const adaptedEvents = events.map((event) => adaptEvent(event));
 
     return {
@@ -38,7 +37,6 @@ export const requestDataAdapter = (data: unknown[]): Channel[] => {
 export const adaptEvent = (rawEvent: Record<string, unknown>): Event => {
   const parsedId = parseInt(rawEvent.id as string);
   const parsedChannelId = parseInt(rawEvent.channelId as string);
-  // Validación básica para cada campo requerido
   if (
     typeof parsedId !== "number" ||
     typeof parsedChannelId !== "number" ||
@@ -51,7 +49,6 @@ export const adaptEvent = (rawEvent: Record<string, unknown>): Event => {
     throw new Error("Invalid event data");
   }
 
-  // Retornar el evento adaptado
   return {
     id: parsedId,
     channelId: parsedChannelId,

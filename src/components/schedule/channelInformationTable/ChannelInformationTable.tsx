@@ -14,7 +14,11 @@ const ChannelInformationTable: React.FC<ChannelInformationTableProps> = ({
   return (
     <div data-testid="channelHeadsContainer" className="sticky left-0 z-50">
       {channels.map((channel) => {
-        return <ChannelHead channel={channel} />;
+        return (
+          <div key={channel.id}>
+            <ChannelHead channel={channel} />
+          </div>
+        );
       })}
     </div>
   );

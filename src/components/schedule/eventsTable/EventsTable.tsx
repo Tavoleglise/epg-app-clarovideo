@@ -24,10 +24,12 @@ const EventsTable: React.FC<EventsTableProps> = ({
         ></div>
         {channels.map((channel: Channel) => {
           return (
-            <ChannelSchedule
-              channel={channel}
-              handleEventSelection={handleEventSelection}
-            />
+            <div key={channel.id}>
+              <ChannelSchedule
+                channel={channel}
+                handleEventSelection={handleEventSelection}
+              />
+            </div>
           );
         })}
       </div>

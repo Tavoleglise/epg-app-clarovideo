@@ -26,12 +26,11 @@ const Schedule: React.FC<ScheduleProps> = ({ handleEventSelection }) => {
   const channelsScheduleRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = () => {
-    // Paso 2
     const channelsSchedule = channelsScheduleRef.current;
     if (!channelsSchedule) return;
 
     const isAtBottom =
-      channelsSchedule.scrollHeight - channelsSchedule.scrollTop ===
+      Math.round(channelsSchedule.scrollHeight - channelsSchedule.scrollTop) ===
       channelsSchedule.clientHeight;
 
     if (isAtBottom) {

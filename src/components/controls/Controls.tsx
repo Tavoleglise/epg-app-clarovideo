@@ -90,7 +90,7 @@ const Controls: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col-reverse h-full justify-center items-center px-16 text-gray-200 sm:flex-row sm:justify-between">
+    <div className="box-content flex flex-col-reverse h-full justify-center items-center py-16 sm:py-0 sm:px-16 text-gray-200 sm:flex-row sm:justify-between">
       <div className="text-xl font-bold flex mt-4 justify-between items-centar sm:justify-center">
         <FormatedDate
           date={formatQueryDateIntoDateFormat(searchConfiguration.beginDate)}
@@ -99,11 +99,11 @@ const Controls: React.FC = () => {
           <Button onClick={handleReturnToToday}>Return to today</Button>
         </div>
       </div>
-      <div className="flex justify-end items-center w-full sm:w-1/2">
+      <div className=" flex justify-end items-center w-full flex-col px-4 sm:w-1/2 sm:flex-row sm:px-0">
         <DatePicker
           data-testid="date-picker"
           label="Birth date"
-          className="max-w-[284px]"
+          className="w-full sm:max-w-xs"
           variant="bordered"
           onChange={(dateValue) => {
             handleDateChange(dateValue);
@@ -113,7 +113,7 @@ const Controls: React.FC = () => {
           data-testid="select"
           label="Select your region"
           size="sm"
-          className="w-full sm:max-w-xs"
+          className="w-full mt-4 sm:max-w-xs sm:ml-4 sm:mt-0"
           variant="bordered"
           onChange={(e) => handleRegionChange(e)}
           defaultSelectedKeys={[searchConfiguration.region]}

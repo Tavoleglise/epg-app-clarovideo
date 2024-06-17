@@ -8,8 +8,8 @@ import MainModal from "../../components/mainModal/MainModal";
 const Home: React.FC = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
-    <div className="bg-gradient-to-r from-white to-gray-400 h-screen flex justify-center items-center">
-      <Button color="primary" onPress={onOpen}>
+    <div className="bg-gradient-to-r from-white to-gray-500 h-screen flex justify-center items-center">
+      <Button color="default" onPress={onOpen}>
         Open EPG
       </Button>
       <MainModal isOpen={isOpen} onOpenChange={onOpenChange} />
