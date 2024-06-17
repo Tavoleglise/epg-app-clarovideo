@@ -58,7 +58,10 @@ const Schedule: React.FC<ScheduleProps> = ({ handleEventSelection }) => {
 
   if (!channels || (channels && channels?.length <= 0) || loading)
     return (
-      <div className="h-full flex justify-center items-center">
+      <div
+        data-testid="spinner"
+        className="h-full flex justify-center items-center"
+      >
         <Spinner color="primary" />
       </div>
     );
@@ -66,6 +69,7 @@ const Schedule: React.FC<ScheduleProps> = ({ handleEventSelection }) => {
     return (
       <>
         <div
+          data-testid="schedule"
           ref={channelsScheduleRef}
           className="h-full w-full flex overflow-x-scroll overflow-y-scroll relative z-10"
         >

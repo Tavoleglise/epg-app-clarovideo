@@ -17,7 +17,7 @@ const EventsTable: React.FC<EventsTableProps> = ({
 }) => {
   return (
     <div>
-      <div className="relative">
+      <div data-testid="channelScheduleContainer" className="relative">
         <div
           style={{ left: calculateTodayDateBarLeftPosition() }}
           className="absolute z-10 top-0 bottom-0 left-1/2 transform -translate-x-1/2 w-0.5 bg-yellow-400"

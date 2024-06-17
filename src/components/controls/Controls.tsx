@@ -101,6 +101,7 @@ const Controls: React.FC = () => {
       </div>
       <div className="flex justify-end items-center w-full sm:w-1/2">
         <DatePicker
+          data-testid="date-picker"
           label="Birth date"
           className="max-w-[284px]"
           variant="bordered"
@@ -109,6 +110,7 @@ const Controls: React.FC = () => {
           }}
         />
         <Select
+          data-testid="select"
           label="Select your region"
           size="sm"
           className="w-full sm:max-w-xs"
